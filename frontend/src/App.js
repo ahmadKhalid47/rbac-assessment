@@ -1,13 +1,24 @@
-import { useSelector } from "react-redux";
 import "./App.css";
+import { useEffect } from "react";
+import api from "./utils/api"
+import ImageUploader from "./components/ImageUploader";
 
 function App() {
-  const user = useSelector((state) => state.user);
-  console.log(user);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await api.get("/api/users");
+        console.log(response);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, []);
 
   return (
     <div className="App">
-      <header className="App-header">none</header>
+      <ImageUploader />
     </div>
   );
 }
