@@ -4,8 +4,8 @@ import { Provider } from "react-redux";
 import store from "./store/store";
 
 // Import Components
-import Login from "./pages/Login";
-import Dashboard from "./pages/Dashboard/Dashboard";
+import Login from "./pages/Auth/Login";
+import Dashboard from "./pages/Dashboards/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {

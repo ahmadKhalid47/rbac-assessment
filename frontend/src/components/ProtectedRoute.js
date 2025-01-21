@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { set_id, setEmail, setName, setRole } from "store/slices/userSlice";
-import Navbar from "./Navbar";
+import Navbar from "./Common/Navbar";
 
 const ProtectedRoute = ({ component: Component, ...rest }) => {
   const [isAuthorized, setIsAuthorized] = useState(null);
