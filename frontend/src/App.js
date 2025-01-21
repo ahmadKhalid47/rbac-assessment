@@ -7,6 +7,7 @@ import store from "./store/store";
 import Login from "./pages/Auth/Login";
 import Dashboard from "./pages/Dashboards/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
+import UserPosts from "pages/UserPosts";
 
 function App() {
   return (
@@ -18,6 +19,10 @@ function App() {
           <Route
             path="/dashboard"
             element={<ProtectedRoute component={Dashboard} />}
+          />
+          <Route
+            path="/dashboard/Posts/:_id"
+            element={<ProtectedRoute component={UserPosts} />}
           />
         </Routes>
       </Router>

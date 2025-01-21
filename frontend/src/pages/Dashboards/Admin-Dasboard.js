@@ -1,5 +1,4 @@
 import CreateRole from "components/Users/CreateRole";
-import PostGrid from "components/Posts/DisplayPosts";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import UserGrid from "components/Users/DisplayUsers";

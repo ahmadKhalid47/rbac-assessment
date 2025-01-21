@@ -6,6 +6,7 @@ const PostGrid = ({ userId, isAdmin }) => {
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPosts, setTotalPosts] = useState(0);
+console.log(userId);
 
   const fetchPosts = async () => {
     try {
