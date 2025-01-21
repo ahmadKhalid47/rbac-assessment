@@ -2,10 +2,11 @@ import CreateRole from "components/Users/CreateRole";
 import PostGrid from "components/Posts/DisplayPosts";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import UserGrid from "components/Users/DisplayUsers";
 
 const AdminDashboard = () => {
   const userData = useSelector((state) => state.users);
-  const [showUsers, setShowPosts] = useState(false);
+  const [showUsers, setShowPosts] = useState(true);
   const handleToggle = () => {
     setShowPosts(!showUsers);
   };
@@ -33,7 +34,7 @@ const AdminDashboard = () => {
       {!showUsers ? (
         <CreateRole role="User" />
       ) : (
-        <PostGrid userId={userData?._id} isAdmin={true} />
+        <UserGrid userId={userData?._id} isSuperAdmin={false} />
       )}
     </div>
   );

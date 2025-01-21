@@ -74,8 +74,39 @@ const createUser = async (req, res) => {
   }
 };
 
+const getUsers = async (req, res) => {
+  const { page = 1, search = "", isSuperAdmin } = req.query;
+  const limit = 6;
+  const skip = (page - 1) * limit;
+  console.log("isSuperAdmin_________", isSuperAdmin);
+
+  try {
+    if (JSON.parse(isSuperAdmin)) {
+      var query = search ? { name: { $regex: search, $options: "i" } } : {};
+    } else {
+      var query = search
+        ? { name: { $regex: search, $options: "i" } }
+        : { role: "User" };
+    }
+    const users = await userModel
+      .find(query)
+      .skip(skip)
+      .limit(limit);
+
+    const totalUsers = await userModel.countDocuments(query);
+    console.log(users);
+
+    res.json({ users, totalUsers });
+  } catch (err) {
+    console.log(err);
+
+    res.status(500).json({ message: "Error fetching users", error: err });
+  }
+};
+
 module.exports = {
   login,
   logout,
   createUser,
+  getUsers,
 };
