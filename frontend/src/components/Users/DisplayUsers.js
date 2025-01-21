@@ -57,12 +57,14 @@ const UserGrid = ({ userId, isSuperAdmin }) => {
             <p className="text-sm text-gray-500 mt-1">Email: {user?.email}</p>
             <div className="w-full flex justify-between">
               <p className="text-sm text-gray-500 mt-1">Role: {user?.role}</p>
-              <Link
-                to={`Posts/${user._id}`}
-                className="text-sm font-bold  mt-1 text-blue-700 hover:underline"
-              >
-                View Posts
-              </Link>
+              {user?.role === "User" && (
+                <Link
+                  to={`Posts/${user._id}`}
+                  className="text-sm font-bold  mt-1 text-blue-700 hover:underline"
+                >
+                  View Posts
+                </Link>
+              )}
             </div>
           </div>
         ))}

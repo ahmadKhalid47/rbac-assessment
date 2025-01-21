@@ -78,11 +78,12 @@ const getUsers = async (req, res) => {
   const { page = 1, search = "", isSuperAdmin } = req.query;
   const limit = 6;
   const skip = (page - 1) * limit;
-  console.log("isSuperAdmin_________", isSuperAdmin);
 
   try {
     if (JSON.parse(isSuperAdmin)) {
-      var query = search ? { name: { $regex: search, $options: "i" } } : {};
+      var query = search
+        ? { name: { $regex: search, $options: "i" } }
+        : { role: "Admin" };
     } else {
       var query = search
         ? { name: { $regex: search, $options: "i" } }
