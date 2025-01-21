@@ -10,7 +10,6 @@ const CreateRole = ({role}) => {
     password: "admin",
     role: role,
   });
-  console.log(role);
   
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -24,7 +23,6 @@ const CreateRole = ({role}) => {
     e.preventDefault();
     setLoading(true);
     setError("");
-console.log(formData);
 
     try {
       const response = await axios.post(
@@ -76,14 +74,6 @@ console.log(formData);
             onChange={handleChange}
             required
           />
-        </div>
-        <div>
-          <label>Role</label>
-          <select name="role" value={formData.role} onChange={handleChange}>
-            <option value="Super Admin">Super Admin</option>
-            <option value="Admin">Admin</option>
-            <option value="User">User</option>
-          </select>
         </div>
         {error && <p style={{ color: "red" }}>{error}</p>}
         <button type="submit" disabled={loading}>
