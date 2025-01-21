@@ -7,7 +7,7 @@ const connectDB = require("./config/db");
 const uploadImage = require("./middlewares/CloudinaryUpload");
 const { getPosts, createPosts } = require("./controllers/postController");
 const userRoutes = require("./routes/user.routes");
-const { verifyToken } = require("./controllers/authController");
+const authRoutes = require("./routes/auth.routes");
 const cors = require("cors");
 
 dotenv.config();
@@ -24,9 +24,9 @@ app.use(
 );
 app.use(express.json());
 
-app.get("/api/verify-token", verifyToken);
+// routes
 
-// routes related users
+app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
 
 // routes related posts

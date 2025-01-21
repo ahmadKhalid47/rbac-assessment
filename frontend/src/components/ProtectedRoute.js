@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { set_id, setEmail, setName, setRole } from "store/slices/userSlice";
 import Navbar from "./Common/Navbar";
@@ -14,8 +13,8 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
   useEffect(() => {
     const verifyToken = async () => {
       try {
-        const response = await api.get("/api/verify-token", {
-          withCredentials: true, 
+        const response = await api.get("/api/auth/verify-token", {
+          withCredentials: true,
         });
 
         if (response.status === 200) {
@@ -48,7 +47,7 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
 
   return isAuthorized ? (
     <>
-<Navbar/>
+      <Navbar />
       <Component role={userData?.role} {...rest} />
     </>
   ) : (
