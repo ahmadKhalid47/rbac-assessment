@@ -4,6 +4,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { set_id, setEmail, setName, setRole } from "store/slices/userSlice";
 import Navbar from "./Common/Navbar";
+import api from "utils/api";
 
 const ProtectedRoute = ({ component: Component, ...rest }) => {
   const [isAuthorized, setIsAuthorized] = useState(null);
@@ -13,7 +14,7 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
   useEffect(() => {
     const verifyToken = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:5000/verify-token", {
+        const response = await api.get("/verify-token", {
           withCredentials: true, 
         });
 

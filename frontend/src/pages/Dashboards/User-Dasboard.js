@@ -1,5 +1,4 @@
 import PostGrid from "components/Posts/DisplayPosts";
-import LogoutButton from "components/Common/Logout";
 import CreatePost from "components/Posts/CreatePost";
 import React from "react";
 import { useSelector } from "react-redux";
@@ -9,10 +8,9 @@ const UserDashboard = () => {
 
   return (
     <div className="p-6">
-      <LogoutButton />
       <h1 className="text-3xl font-bold mb-4">User Dashboard</h1>
       <p className="text-gray-700">
-        Welcome User! Here you can manage your posts and profile.
+        Welcome User! Here you can manage your posts.
       </p>
       <CreatePost />
       <PostGrid userId={userData?._id} isAdmin={false} />

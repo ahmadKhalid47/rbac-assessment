@@ -112,7 +112,6 @@ const createUser = async (req, res) => {
 };
 
 module.exports = {
-  register,
   login,
   getUserProfile,
   getAllUsers,

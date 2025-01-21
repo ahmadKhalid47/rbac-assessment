@@ -1,5 +1,6 @@
 // components/LogoutButton.tsx
 import { useState } from "react";
+import api from "utils/api";
 
 const LogoutButton = () => {
   const [loading, setLoading] = useState(false);
@@ -7,18 +8,17 @@ const LogoutButton = () => {
   const handleLogout = async () => {
     setLoading(true);
     try {
-      const response = await fetch("http://127.0.0.1:5000/api/logout", {
-        method: "POST",
-      });
+      const response = await api.post("/api/logout");
+      console.log(response);
 
-      if (response.ok) {
+      if (response.status === 200) {
         window.location.href = "/login";
       } else {
-        alert("Logout failed");
+        console.log("Logout failed");
       }
     } catch (error) {
       console.error("Logout error:", error);
-      alert("An error occurred while logging out");
+      console.log("An error occurred while logging out");
     } finally {
       setLoading(false);
     }

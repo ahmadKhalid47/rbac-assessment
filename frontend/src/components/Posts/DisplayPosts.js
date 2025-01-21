@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import api from "utils/api";
 
 const PostGrid = ({ userId, isAdmin }) => {
   const [posts, setPosts] = useState([]);
@@ -9,7 +10,7 @@ const PostGrid = ({ userId, isAdmin }) => {
 
   const fetchPosts = async () => {
     try {
-      const response = await axios.get(`http://127.0.0.1:5000/api/posts`, {
+      const response = await api.get(`/api/posts`, {
         params: {
           page: currentPage,
           search,

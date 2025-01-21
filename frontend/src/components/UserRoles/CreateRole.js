@@ -2,15 +2,16 @@
 
 import { useState } from "react";
 import axios from "axios";
+import api from "utils/api";
 
-const CreateRole = ({role}) => {
+const CreateRole = ({ role }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
     role: role,
   });
-  
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -25,13 +26,9 @@ const CreateRole = ({role}) => {
     setError("");
 
     try {
-      const response = await axios.post(
-        "http://127.0.0.1:5000/api/users",
-        formData
-      );
+      const response = await api.post("/api/users", formData);
       setFormData({ name: "", email: "", password: "", role: role });
     } catch (err) {
-
       setError("Error creating user.");
       console.log(err);
     } finally {

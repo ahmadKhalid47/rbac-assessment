@@ -11,6 +11,7 @@ const userModel = require("./models/user.model");
 const postModel = require("./models/post.model");
 const uploadImage = require("./middlewares/CloudinaryUpload");
 const { getPosts } = require("./controllers/postController");
+const cors = require("cors");
 
 dotenv.config();
 connectDB();
@@ -19,21 +20,15 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(
-  require("cors")({
-    origin: "http://127.0.0.1:3000",
+  cors({
+    origin: process.env.FRONTEND_URL || "http://127.0.0.1:3000",
     credentials: true,
   })
 );
 app.use(express.json());
 app.use("/api/users", userRoutes);
 
-app.get("/api/auth/token", (req, res) => {
-  const token = req.cookies?.token;
-  if (!token) {
-    return res.status(401).json({ message: "Unauthorized" });
-  }
-  return res.json({ token });
-});
+
 
 app.post("/api/login", async (req, res) => {
   const { email, password } = req.body;

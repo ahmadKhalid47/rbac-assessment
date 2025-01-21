@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import api from "utils/api";
 
 const CreatePost = () => {
   const userData = useSelector((state) => state.users);
@@ -36,11 +37,9 @@ const CreatePost = () => {
     }
 
     try {
-      const response = await axios.post(
-        "http://127.0.0.1:5000/posts/create",
-        formDataToSend,
-        { headers: { "Content-Type": "multipart/form-data" } }
-      );
+      const response = await api.post("/posts/create", formDataToSend, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
       setMessage(response.data.message);
       setFormData({
         title: "",
