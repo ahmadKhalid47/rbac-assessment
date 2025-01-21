@@ -65,7 +65,7 @@ const PostGrid = ({ userId, isAdmin }) => {
 
       {/* Pagination */}
       <div className="flex justify-center mt-4">
-        {[...Array(Math.ceil(totalPosts / 2))].map((_, index) => (
+        {[...Array(Math.ceil(totalPosts / 10))].map((_, index) => (
           <button
             key={index}
             onClick={() => handlePageChange(index + 1)}

@@ -12,8 +12,8 @@ const UserDashboard = () => {
       <p className="text-gray-700">
         Welcome User! Here you can manage your posts and profile.
       </p>
-      <PostGrid userId={userData?._id} isAdmin={false} />
       <CreatePost />
+      <PostGrid userId={userData?._id} isAdmin={false} />
     </div>
   );
 };
