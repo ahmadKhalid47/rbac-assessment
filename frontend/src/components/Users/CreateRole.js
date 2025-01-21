@@ -1,7 +1,7 @@
 // components/CreateRole.tsx
 
 import { useState } from "react";
-import api from "utils/api";
+import { createUserService } from "services/user/createUserService";
 
 const CreateRole = ({ role }) => {
   const [formData, setFormData] = useState({
@@ -25,9 +25,7 @@ const CreateRole = ({ role }) => {
     setError("");
 
     try {
-      await api.post("/api/user/createUser", formData, {
-        withCredentials: true,
-      });
+      await createUserService(formData);
       setFormData({ name: "", email: "", password: "", role: role });
     } catch (err) {
       setError("Error creating user.");
