@@ -30,7 +30,7 @@ const PostGrid = ({ userId, isAdmin }) => {
 
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
-    setCurrentPage(1); // Reset to first page when search changes
+    setCurrentPage(1); 
   };
 
   const handlePageChange = (pageNumber) => {

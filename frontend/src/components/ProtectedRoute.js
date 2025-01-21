@@ -14,7 +14,7 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
     const verifyToken = async () => {
       try {
         const response = await axios.get("http://127.0.0.1:5000/verify-token", {
-          withCredentials: true, // Ensure the HTTP-only cookies are sent
+          withCredentials: true, 
         });
 
         if (response.status === 200) {
@@ -42,7 +42,6 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
   }, [dispatch, userData?.role]);
 
   if (isAuthorized === null) {
-    // Optional: Add a loading spinner while verifying the token
     return <div>Loading...</div>;
   }
 

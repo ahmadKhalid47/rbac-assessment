@@ -12,7 +12,6 @@ const LogoutButton = () => {
       });
 
       if (response.ok) {
-        // Redirect to home or login page after successful logout
         window.location.href = "/login";
       } else {
         alert("Logout failed");

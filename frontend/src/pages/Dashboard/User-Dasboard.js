@@ -1,6 +1,6 @@
 import PostGrid from "components/DisplayPosts";
 import LogoutButton from "components/Logout";
-import CreatePost from "components/UploadPost";
+import CreatePost from "components/CreatePost";
 import React from "react";
 import { useSelector } from "react-redux";
 

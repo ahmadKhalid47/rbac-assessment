@@ -2,30 +2,24 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../models/user.model");
 
-// Register User (Super Admin only)
 const register = async (req, res) => {
-
-    try {
+  try {
     const { name, email, password, role } = req.body;
 
     if (!["Admin", "User"].includes(role)) {
       return res.status(400).json({ message: "Invalid role" });
     }
 
-    // Check if user already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ message: "User already exists" });
     }
 
-    // Hash password before saving to the database
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Create new user
     const newUser = new User({ name, email, password: hashedPassword, role });
     await newUser.save();
 
-    // Create a JWT token
     const token = jwt.sign(
       { userId: newUser._id, role: newUser.role },
       process.env.JWT_SECRET,
@@ -48,24 +42,20 @@ const register = async (req, res) => {
   }
 };
 
-// Login User
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // Find user by email
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(400).json({ message: "Invalid credentials" });
     }
 
-    // Compare password with stored hashed password
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(400).json({ message: "Invalid credentials" });
     }
 
-    // Create JWT token
     const token = jwt.sign(
       { userId: user._id, role: user.role },
       process.env.JWT_SECRET,
@@ -88,7 +78,6 @@ const login = async (req, res) => {
   }
 };
 
-// Get User Profile (Protected route)
 const getUserProfile = async (req, res) => {
   try {
     const user = await User.findById(req.userId);
@@ -107,7 +96,6 @@ const getUserProfile = async (req, res) => {
   }
 };
 
-// Get All Users (Super Admin only)
 const getAllUsers = async (req, res) => {
   try {
     const users = await User.find();
@@ -118,7 +106,6 @@ const getAllUsers = async (req, res) => {
   }
 };
 
-// Create Admin User (Super Admin only)
 const createAdminUser = async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -141,7 +128,6 @@ const createAdminUser = async (req, res) => {
   }
 };
 
-// Create Regular User (Admin or Super Admin only)
 const createUser = async (req, res) => {
   try {
     const { name, email, password } = req.body;

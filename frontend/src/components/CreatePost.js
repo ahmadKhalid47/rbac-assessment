@@ -7,16 +7,16 @@ const CreatePost = () => {
   const [formData, setFormData] = useState({
     title: "",
     content: "",
-    thumbnail: null, // Changed to null for file upload
+    thumbnail: null,
     author: userData?._id,
   });
-  
+
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
   const handleChange = (e) => {
     if (e.target.name === "thumbnail") {
-      setFormData({ ...formData, thumbnail: e.target.files[0] }); // Handle file input
+      setFormData({ ...formData, thumbnail: e.target.files[0] });
     } else {
       setFormData({ ...formData, [e.target.name]: e.target.value });
     }
@@ -27,13 +27,12 @@ const CreatePost = () => {
     setLoading(true);
     setMessage("");
 
-    // Create formData to append file and other form data
     const formDataToSend = new FormData();
     formDataToSend.append("title", formData.title);
     formDataToSend.append("content", formData.content);
     formDataToSend.append("author", formData.author);
     if (formData.thumbnail) {
-      formDataToSend.append("thumbnail", formData.thumbnail); // Append file if selected
+      formDataToSend.append("thumbnail", formData.thumbnail);
     }
 
     try {
@@ -46,12 +45,11 @@ const CreatePost = () => {
       setFormData({
         title: "",
         content: "",
-        thumbnail: null, // Reset after submission
+        thumbnail: null,
         author: userData?._id,
       });
     } catch (error) {
-    console.log("error_________________________________", error);
-      
+      console.log(error);
       setMessage(error.response?.data?.message || "An error occurred");
     }
     setLoading(false);

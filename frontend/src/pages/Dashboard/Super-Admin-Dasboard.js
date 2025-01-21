@@ -1,4 +1,4 @@
-import CreateRole from "components/Create-Role";
+import CreateRole from "components/CreateRole";
 import React from "react";
 
 const SuperAdminDashboard = () => {

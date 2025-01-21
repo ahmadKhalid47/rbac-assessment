@@ -1,7 +1,7 @@
 const postModel = require("../models/post.model");
 
 const getPosts = async (req, res) => {
-  const { page = 1, search = "", userId, isAdmin } = req.query; // Add userId and isAdmin from the query
+  const { page = 1, search = "", userId, isAdmin } = req.query; 
   const limit = 10;
   const skip = (page - 1) * limit;
 
@@ -15,7 +15,7 @@ const getPosts = async (req, res) => {
     }
     const posts = await postModel
       .find(query)
-      .populate("author", "name") // Assuming "User" has a "name" field
+      .populate("author", "name")
       .skip(skip)
       .limit(limit);
 

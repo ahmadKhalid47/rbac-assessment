@@ -2,8 +2,6 @@ const cloudinary = require("cloudinary").v2;
 const multer = require("multer");
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
 
-
-
 cloudinary.config({
   cloud_name: "dcdynkm5d",
   api_key: "157745433978489",
@@ -21,8 +19,5 @@ const upload = multer({
   storage: storage,
 });
 
-
-// Middleware for uploading a single file
-const uploadImage = upload.single("thumbnail"); // 'image' is the field name from FormData
-
+const uploadImage = upload.single("thumbnail");
 module.exports = uploadImage;
