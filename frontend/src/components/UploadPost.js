@@ -11,7 +11,6 @@ const CreatePost = () => {
     author: userData?._id,
   });
   
-  console.log(formData.thumbnail);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 

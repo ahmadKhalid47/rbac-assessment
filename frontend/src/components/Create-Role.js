@@ -29,8 +29,6 @@ const CreateRole = ({role}) => {
         "http://127.0.0.1:5000/api/users",
         formData
       );
-      console.log(response);
-      console.log("User created successfully!");
       setFormData({ name: "", email: "", password: "", role: role });
     } catch (err) {
 

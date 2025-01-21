@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const PostGrid = () => {
+const PostGrid = ({ userId, isAdmin }) => {
   const [posts, setPosts] = useState([]);
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPosts, setTotalPosts] = useState(0);
-  console.log(posts);
 
   const fetchPosts = async () => {
     try {
@@ -14,10 +13,10 @@ const PostGrid = () => {
         params: {
           page: currentPage,
           search,
+          userId,
+          isAdmin,
         },
       });
-        console.log(response);
-        
       setPosts(response.data.posts);
       setTotalPosts(response.data.totalPosts);
     } catch (error) {
@@ -27,7 +26,7 @@ const PostGrid = () => {
 
   useEffect(() => {
     fetchPosts();
-  }, [currentPage, search]);
+  }, [currentPage, search, userId, isAdmin]);
 
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
@@ -50,7 +49,7 @@ const PostGrid = () => {
         />
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {posts?.map((post) => (
+        {posts.map((post) => (
           <div key={post._id} className="border p-4 rounded shadow-md">
             <img
               src={post.thumbnail}

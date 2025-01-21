@@ -32,7 +32,6 @@ function ImageUploader() {
       );
       setUploading(false);
       setImageUrl(response.data.imageUrl); // Display the image URL after successful upload
-      console.log("ok");
     } catch (error) {
       setUploading(false);
       console.log(error);

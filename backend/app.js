@@ -91,19 +91,15 @@ app.get("/verify-token", async (req, res) => {
     const decoded = jwt.verify(token, process.env.JWT_SECRET); // Verify the token
 
     let user = await userModel.findOne({ email: decoded.email });
-    console.log(user);
 
     res.status(200).json(user); // Return the user's role or other data
   } catch (error) {
-    console.error("Token verification failed:", error);
     res.status(401).json({ message: "Invalid token" });
   }
 });
 
 app.post("/api/users", async (req, res) => {
   const { name, email, password, role } = req.body;
-  // console.log(req?.body);
-
   // Validate required fields
   if (!name || !email || !password || !role) {
     return res.status(400).json({ message: "All fields are required" });
@@ -134,19 +130,14 @@ app.post("/api/users", async (req, res) => {
       .status(201)
       .json({ message: "User created successfully", user: newUser });
   } catch (error) {
-    console.log(error);
-
     return res.status(500).json({ message: "Error creating user", error });
   }
 });
 
 app.post("/posts/create", uploadImage, async (req, res) => {
-  console.log("hit");
-  console.log("req?.file__________", req?.file);
 
   try {
     const { title, content, thumbnail, author } = req.body;
-    console.log(title, content, thumbnail, author);
 
     if (!title || !content || !req?.file?.path || !author) {
       return res.status(400).json({ message: "All fields are required" });
@@ -164,7 +155,6 @@ app.post("/posts/create", uploadImage, async (req, res) => {
       .status(201)
       .json({ message: "Post created successfully", post: newPost });
   } catch (error) {
-    console.log("error_________________________________", error);
     res.status(500).json({ message: "Server error", error: error.message });
   }
 });
