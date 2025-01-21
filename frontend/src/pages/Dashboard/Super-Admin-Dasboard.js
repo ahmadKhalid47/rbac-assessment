@@ -1,4 +1,4 @@
-import CreateUserForm from "components/Create-Admin";
+import CreateRole from "components/Create-Role";
 import React from "react";
 
 const SuperAdminDashboard = () => {
@@ -9,9 +9,9 @@ const SuperAdminDashboard = () => {
         Welcome Super Admin! You have the highest level of access to the system.
       </p>
       <h2>Create Admin</h2>
-      <CreateUserForm role={"Admin"} />
+      <CreateRole role={"Admin"} />
       <h2>Create User</h2>
-      <CreateUserForm role={"User"} />
+      <CreateRole role={"User"} />
     </div>
   );
 };

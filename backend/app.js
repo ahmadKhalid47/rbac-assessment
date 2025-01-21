@@ -100,7 +100,7 @@ app.get("/verify-token", async (req, res) => {
 
 app.post("/api/users", async (req, res) => {
   const { name, email, password, role } = req.body;
-console.log(req?.body);
+// console.log(req?.body);
 
   // Validate required fields
   if (!name || !email || !password || !role) {

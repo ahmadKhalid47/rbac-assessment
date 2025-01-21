@@ -1,15 +1,17 @@
-// components/CreateUserForm.tsx
+// components/CreateRole.tsx
 
 import { useState } from "react";
 import axios from "axios";
 
-const CreateUserForm = ({role}) => {
+const CreateRole = ({role}) => {
   const [formData, setFormData] = useState({
     name: "admin",
     email: "admin@gmail.com",
     password: "admin",
     role: role,
   });
+  console.log(role);
+  
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -92,4 +94,4 @@ console.log(formData);
   );
 };
 
-export default CreateUserForm;
+export default CreateRole;
