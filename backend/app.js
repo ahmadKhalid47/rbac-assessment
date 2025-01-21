@@ -14,6 +14,7 @@ const postRoutes = require("./routes/post.routes");
 const userModel = require("./models/user.model");
 const postModel = require("./models/post.model");
 const uploadImage = require("./middlewares/fileUpload");
+const { getPosts } = require("./controllers/postController");
 
 dotenv.config();
 connectDB();
@@ -30,7 +31,7 @@ app.use(
 app.use(express.json()); // Parse JSON bodies
 // app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
-app.use("/api/posts", postRoutes);
+// app.use("/api/posts", postRoutes);
 
 app.get("/api/auth/token", (req, res) => {
   const token = req.cookies?.token; // Use cookie-parser to parse cookies
@@ -167,5 +168,7 @@ app.post("/posts/create", uploadImage, async (req, res) => {
     res.status(500).json({ message: "Server error", error: error.message });
   }
 });
+
+app.get("/api/posts", getPosts);
 
 module.exports = app;
