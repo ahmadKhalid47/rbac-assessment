@@ -25,7 +25,9 @@ const CreateRole = ({ role }) => {
     setError("");
 
     try {
-      await api.post("/api/user/createUser", formData);
+      await api.post("/api/user/createUser", formData, {
+        withCredentials: true,
+      });
       setFormData({ name: "", email: "", password: "", role: role });
     } catch (err) {
       setError("Error creating user.");

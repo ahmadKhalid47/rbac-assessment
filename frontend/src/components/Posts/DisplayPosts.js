@@ -11,6 +11,7 @@ const PostGrid = ({ userId, isAdmin }) => {
   const fetchPosts = async () => {
     try {
       const response = await api.get(`/api/post/getPosts`, {
+        withCredentials: true,
         params: {
           page: currentPage,
           search,

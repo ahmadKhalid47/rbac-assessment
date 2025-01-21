@@ -38,6 +38,7 @@ const CreatePost = () => {
 
     try {
       const response = await api.post("/api/post/createPost", formDataToSend, {
+        withCredentials: true,
         headers: { "Content-Type": "multipart/form-data" },
       });
       setMessage(response.data.message);
