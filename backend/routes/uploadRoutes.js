@@ -1,14 +1,14 @@
 // backend/routes/uploadRoutes.js
 const express = require("express");
 const router = express.Router();
-const  uploadImage  = require("../middlewares/fileUpload");
+const uploadImage = require("../middlewares/fileUpload");
 
 // POST route to upload an image
 router.post("/upload", uploadImage, (req, res) => {
-console.log("req?.image__________", req?.image);
-console.log("req?.body__________", req?.body);
-console.log("req?.file__________", req?.file);
-  
+  console.log("req?.image__________", req?.image);
+  console.log("req?.body__________", req?.body);
+  console.log("req?.file__________", req?.file);
+
   if (!req) {
     return res.status(400).json({ error: "Image upload failed" });
   }
