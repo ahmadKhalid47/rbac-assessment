@@ -34,7 +34,7 @@ const CreateRole = ({ role }) => {
   };
 
   return (
-    <div className="w-full max-w-lg mx-auto p-6 bg-white shadow-md rounded-lg my-5">
+    <div className="w-full mx-auto p-6 bg-white shadow-md rounded-lg my-5">
       <h1 className="text-2xl font-bold text-gray-800 mb-4 text-center">
         Create {role}
       </h1>

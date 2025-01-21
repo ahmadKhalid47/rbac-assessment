@@ -36,7 +36,7 @@ const PostGrid = ({ userId, isAdmin }) => {
   };
 
   return (
-    <div className="container mx-auto">
+    <div className="w-full">
       <div className="mb-4">
         <input
           type="text"
@@ -63,7 +63,7 @@ const PostGrid = ({ userId, isAdmin }) => {
 
       {/* Pagination */}
       <div className="flex justify-center mt-4">
-        {[...Array(Math.ceil(totalPosts / 10))].map((_, index) =>
+        {[...Array(Math.ceil(totalPosts / 6))].map((_, index) =>
          (
           <button
             key={index}

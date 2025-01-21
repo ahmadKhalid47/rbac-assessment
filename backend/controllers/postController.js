@@ -2,7 +2,7 @@ const postModel = require("../models/post.model");
 
 const getPosts = async (req, res) => {
   const { page = 1, search = "", userId, isAdmin } = req.query; 
-  const limit = 10;
+  const limit = 6;
   const skip = (page - 1) * limit;
 
   try {
