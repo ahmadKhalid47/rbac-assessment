@@ -4,7 +4,6 @@ import LogoutButton from "./Logout";
 
 const Navbar = () => {
   const userData = useSelector((state) => state.users);
-  console.log(userData);
 
   return (
     <nav class="bg-gray-800 p-4">

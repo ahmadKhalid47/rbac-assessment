@@ -19,8 +19,6 @@ const getPosts = async (req, res) => {
       .skip(skip)
       .limit(limit);
 
-    console.log(posts);
-
     const totalPosts = await postModel.countDocuments(query);
 
     res.json({ posts, totalPosts });

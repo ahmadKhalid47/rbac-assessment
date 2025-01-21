@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import api from "utils/api";
+import { getPostService } from "services/post/getPostService";
 
 const PostGrid = ({ userId, isAdmin }) => {
   const [posts, setPosts] = useState([]);
@@ -9,17 +9,14 @@ const PostGrid = ({ userId, isAdmin }) => {
 
   const fetchPosts = async () => {
     try {
-      const response = await api.get(`/api/post/getPosts`, {
-        withCredentials: true,
-        params: {
-          page: currentPage,
-          search,
-          userId,
-          isAdmin,
-        },
+      const data = await getPostService({
+        currentPage,
+        search,
+        userId,
+        isAdmin,
       });
-      setPosts(response.data.posts);
-      setTotalPosts(response.data.totalPosts);
+      setPosts(data.posts);
+      setTotalPosts(data.totalPosts);
     } catch (error) {
       console.error("Error fetching posts:", error);
     }

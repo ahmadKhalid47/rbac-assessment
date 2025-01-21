@@ -10,8 +10,7 @@ const LoginPage = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await loginService(email, password);
-      console.log(response.message);
+      await loginService(email, password);
       navigate("/dashboard");
     } catch (error) {
       console.error(error.response?.data || "Error occurred");

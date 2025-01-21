@@ -8,8 +8,6 @@ const LogoutButton = () => {
     setLoading(true);
     try {
       const response = await logoutService();
-      console.log(response);
-
       if (response.status === 200) {
         window.location.href = "/login";
       } else {
