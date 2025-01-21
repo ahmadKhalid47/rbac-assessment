@@ -4,7 +4,7 @@ const getPosts = async (req, res) => {
   const { page = 1, search = "" } = req.query;
   console.log("req.query____________________", req.query);
 
-  const limit = 10;
+  const limit = 2;
   const skip = (page - 1) * limit;
 
   try {
