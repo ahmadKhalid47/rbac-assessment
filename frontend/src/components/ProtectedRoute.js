@@ -14,7 +14,7 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
   useEffect(() => {
     const verifyToken = async () => {
       try {
-        const response = await api.get("/verify-token", {
+        const response = await api.get("/api/verify-token", {
           withCredentials: true, 
         });
 

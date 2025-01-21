@@ -37,7 +37,7 @@ const CreatePost = () => {
     }
 
     try {
-      const response = await api.post("/posts/create", formDataToSend, {
+      const response = await api.post("/api/createPost", formDataToSend, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       setMessage(response.data.message);

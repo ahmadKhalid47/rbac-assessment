@@ -9,7 +9,7 @@ const Dashboard = ({ role }) => {
     return <UserDashboard />;
   } else if (role === "Admin") {
     return <AdminDashboard />;
-  } else if (role === "superAdmin") {
+  } else if (role === "SuperAdmin") {
     return <SuperAdminDashboard />;
   }
 };

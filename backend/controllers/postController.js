@@ -29,4 +29,28 @@ const getPosts = async (req, res) => {
   }
 };
 
-module.exports = { getPosts };
+const createPosts = async (req, res) => {
+  try {
+    const { title, content, thumbnail, author } = req.body;
+
+    if (!title || !content || !req?.file?.path || !author) {
+      return res.status(400).json({ message: "All fields are required" });
+    }
+
+    const newPost = new postModel({
+      title,
+      content,
+      thumbnail: req?.file?.path,
+      author,
+    });
+    await newPost.save();
+
+    res
+      .status(201)
+      .json({ message: "Post created successfully", post: newPost });
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+};  
+  
+module.exports = { getPosts, createPosts };

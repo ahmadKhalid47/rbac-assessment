@@ -12,7 +12,7 @@ const LoginPage = () => {
     e.preventDefault();
     try {
       const response = await api.post(
-        "/api/login",
+        "/api/user/login",
         { email, password },
         { withCredentials: true }
       );
