@@ -54,6 +54,7 @@ console.log(user);
       return res.status(401).json({ message: "Invalid user" });
     }
 
+      
     // Compare password
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {

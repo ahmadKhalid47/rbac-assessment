@@ -3,7 +3,7 @@ import axios from "axios";
 
 const LoginPage = () => {
   const [email, setemail] = useState("superAdmin@gmail.com");
-  const [password, setPassword] = useState("fsdfs");
+  const [password, setPassword] = useState("password");
 
   const handleLogin = async (e) => {
     e.preventDefault();
