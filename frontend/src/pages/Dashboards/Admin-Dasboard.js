@@ -1,4 +1,4 @@
-import CreateRole from "components/UserRoles/CreateRole";
+import CreateRole from "components/Users/CreateRole";
 import PostGrid from "components/Posts/DisplayPosts";
 import React from "react";
 import { useSelector } from "react-redux";

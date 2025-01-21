@@ -1,6 +1,5 @@
-// components/logoutButton.tsx
 import { useState } from "react";
-import api from "utils/api";
+import { logoutService } from "services/user/logoutService";
 
 const LogoutButton = () => {
   const [loading, setLoading] = useState(false);
@@ -8,7 +7,7 @@ const LogoutButton = () => {
   const handleLogout = async () => {
     setLoading(true);
     try {
-      const response = await api.post("/api/user/logout");
+      const response = await logoutService();
       console.log(response);
 
       if (response.status === 200) {
@@ -16,8 +15,7 @@ const LogoutButton = () => {
       } else {
         console.log("Logout failed");
       }
-    } catch (error) {
-      console.error("Logout error:", error);
+    } catch {
       console.log("An error occurred while logging out");
     } finally {
       setLoading(false);
