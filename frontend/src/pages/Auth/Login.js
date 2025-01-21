@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import api from "utils/api";
+import { loginService } from "services/user/loginService";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -10,12 +10,8 @@ const LoginPage = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await api.post(
-        "/api/user/login",
-        { email, password },
-        { withCredentials: true }
-      );
-      console.log(response.data.message);
+      const response = await loginService(email, password);
+      console.log(response.message);
       navigate("/dashboard");
     } catch (error) {
       console.error(error.response?.data || "Error occurred");
