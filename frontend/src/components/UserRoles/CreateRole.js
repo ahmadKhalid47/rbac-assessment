@@ -1,7 +1,6 @@
 // components/CreateRole.tsx
 
 import { useState } from "react";
-import axios from "axios";
 import api from "utils/api";
 
 const CreateRole = ({ role }) => {
@@ -26,7 +25,7 @@ const CreateRole = ({ role }) => {
     setError("");
 
     try {
-      const response = await api.post("/api/user/createUser", formData);
+      await api.post("/api/user/createUser", formData);
       setFormData({ name: "", email: "", password: "", role: role });
     } catch (err) {
       setError("Error creating user.");
