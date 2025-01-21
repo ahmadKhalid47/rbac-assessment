@@ -18,15 +18,15 @@ const UserDashboard = () => {
         Welcome User! Here you can manage your posts.
       </p>
 
-      <div className="w-full h-fit flex my-6 text-2xl font-bold p-2 justify-around ">
+      <div className="w-full h-fit flex my-6 text-2xl font-bold py-2 justify-between ">
         <button
-          className={`w-[49%] p-3 text-center rounded-l-xl ${!showPosts ? "bg-gray-100" : "bg-blue-500 text-white"}`}
+          className={`w-[49.5%] p-3 text-center rounded-l-xl ${!showPosts ? "bg-gray-100" : "bg-blue-500 text-white"}`}
           onClick={handleToggle}
         >
           All Posts
         </button>
         <button
-          className={`w-[49%] p-3 text-center rounded-r-xl ${showPosts ? "bg-gray-100" : "bg-blue-500 text-white"}`}
+          className={`w-[49.5%] p-3 text-center rounded-r-xl ${showPosts ? "bg-gray-100" : "bg-blue-500 text-white"}`}
           onClick={handleToggle}
         >
           Create Post
