@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
-  const [email, setemail] = useState("superAdmin@gmail.com");
+  const [email, setEmail] = useState("superAdmin@gmail.com");
   const [password, setPassword] = useState("password");
   const navigate = useNavigate();
 
@@ -13,44 +13,53 @@ const LoginPage = () => {
       const response = await axios.post(
         "http://127.0.0.1:5000/api/login",
         { email, password },
-        { withCredentials: true } // Send cookies
+        { withCredentials: true }
       );
       console.log(response.data.message);
+      navigate("/dashboard");
     } catch (error) {
       console.error(error.response?.data || "Error occurred");
       console.log(error.response?.data?.message || "Login failed");
     }
-    navigate("/dashboard");
   };
 
   return (
-    <div style={{ maxWidth: "300px", margin: "auto", padding: "50px" }}>
-      <h2>Login</h2>
-      <form onSubmit={handleLogin}>
-        <div style={{ marginBottom: "10px" }}>
-          <label>
-            email:
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-sm">
+        <h2 className="text-2xl font-bold text-center mb-6">Login</h2>
+        <form onSubmit={handleLogin} className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Email
+            </label>
             <input
               type="text"
               value={email}
-              onChange={(e) => setemail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
               required
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
             />
-          </label>
-        </div>
-        <div style={{ marginBottom: "10px" }}>
-          <label>
-            Password:
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Password
+            </label>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
             />
-          </label>
-        </div>
-        <button type="submit">Login</button>
-      </form>
+          </div>
+          <button
+            type="submit"
+            className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700"
+          >
+            Login
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

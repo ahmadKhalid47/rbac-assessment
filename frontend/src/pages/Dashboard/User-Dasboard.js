@@ -2,10 +2,11 @@ import React from "react";
 
 const UserDashboard = () => {
   return (
-    <div>
-      <h1>User Dashboard</h1>
-      <p>Welcome User! Here you can manage your posts and profile.</p>
-      {/* Add user-specific content like posts, profile settings, etc. */}
+    <div className="p-6">
+      <h1 className="text-3xl font-bold mb-4">User Dashboard</h1>
+      <p className="text-gray-700">
+        Welcome User! Here you can manage your posts and profile.
+      </p>
     </div>
   );
 };
