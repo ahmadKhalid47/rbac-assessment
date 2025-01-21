@@ -1,3 +1,4 @@
+import CreateUserForm from "components/Create-Admin";
 import React from "react";
 
 const SuperAdminDashboard = () => {
@@ -7,7 +8,9 @@ const SuperAdminDashboard = () => {
       <p>
         Welcome Super Admin! You have the highest level of access to the system.
       </p>
-      {/* Add super admin-specific content like managing admin roles, system settings, etc. */}
+
+      <CreateUserForm />
+      
     </div>
   );
 };

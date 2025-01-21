@@ -24,11 +24,11 @@ function App() {
           {/* Protected Routes for User, Admin, Super Admin */}
           <Route
             path="/user-dashboard"
-            element={<ProtectedRoute role="user" component={UserDashboard} />}
+            element={<ProtectedRoute role="User" component={UserDashboard} />}
           />
           <Route
             path="/admin-dashboard"
-            element={<ProtectedRoute role="admin" component={AdminDashboard} />}
+            element={<ProtectedRoute role="Admin" component={AdminDashboard} />}
           />
           <Route
             path="/super-admin-dashboard"

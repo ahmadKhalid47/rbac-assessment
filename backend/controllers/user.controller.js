@@ -4,11 +4,9 @@ const User = require("../models/user.model");
 
 // Register User (Super Admin only)
 const register = async (req, res) => {
-console.log("hit__________________");
 
     try {
     const { name, email, password, role } = req.body;
-console.log("body__________________", name, email, password, role);
 
     if (!["Admin", "User"].includes(role)) {
       return res.status(400).json({ message: "Invalid role" });
@@ -27,15 +25,12 @@ console.log("body__________________", name, email, password, role);
     const newUser = new User({ name, email, password: hashedPassword, role });
     await newUser.save();
 
-    console.log(process.env.JWT_SECRET);
-    console.log({ userId: newUser._id, role: newUser.role });
     // Create a JWT token
     const token = jwt.sign(
       { userId: newUser._id, role: newUser.role },
       process.env.JWT_SECRET,
       { expiresIn: "1h" }
     );
-console.log(token);
 
     res.status(201).json({
       message: "User created successfully",
