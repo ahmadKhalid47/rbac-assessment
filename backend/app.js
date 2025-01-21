@@ -13,6 +13,7 @@ const userRoutes = require("./routes/user.routes");
 const postRoutes = require("./routes/post.routes");
 const userModel = require("./models/user.model");
 const postModel = require("./models/post.model");
+const uploadImage = require("./middlewares/fileUpload");
 
 dotenv.config();
 connectDB();
@@ -89,7 +90,7 @@ app.get("/verify-token", async (req, res) => {
     const decoded = jwt.verify(token, process.env.JWT_SECRET); // Verify the token
 
     let user = await userModel.findOne({ email: decoded.email });
-console.log(user);
+    console.log(user);
 
     res.status(200).json(user); // Return the user's role or other data
   } catch (error) {
@@ -138,24 +139,31 @@ app.post("/api/users", async (req, res) => {
   }
 });
 
-app.post("/posts/create", async (req, res) => {
+app.post("/posts/create", uploadImage, async (req, res) => {
   console.log("hit");
+  console.log("req?.file__________", req?.file);
 
   try {
     const { title, content, thumbnail, author } = req.body;
+    console.log(title, content, thumbnail, author);
 
-    if (!title || !content || !thumbnail || !author) {
+    if (!title || !content || !req?.file?.path || !author) {
       return res.status(400).json({ message: "All fields are required" });
     }
 
-    const newPost = new postModel({ title, content, thumbnail, author });
+    const newPost = new postModel({
+      title,
+      content,
+      thumbnail: req?.file?.path,
+      author,
+    });
     await newPost.save();
 
     res
       .status(201)
       .json({ message: "Post created successfully", post: newPost });
   } catch (error) {
-    // console.log(error);
+    console.log("error_________________________________", error);
     res.status(500).json({ message: "Server error", error: error.message });
   }
 });

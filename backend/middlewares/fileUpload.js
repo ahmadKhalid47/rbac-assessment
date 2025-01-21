@@ -23,6 +23,6 @@ const upload = multer({
 
 
 // Middleware for uploading a single file
-const uploadImage = upload.single("image"); // 'image' is the field name from FormData
+const uploadImage = upload.single("thumbnail"); // 'image' is the field name from FormData
 
 module.exports = uploadImage;

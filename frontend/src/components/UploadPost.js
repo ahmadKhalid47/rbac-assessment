@@ -4,42 +4,55 @@ import { useSelector } from "react-redux";
 
 const CreatePost = () => {
   const userData = useSelector((state) => state.users);
-  console.log(userData);
-  console.log(
-    "userData?_id_______________________________________",
-    userData?._id
-  );
   const [formData, setFormData] = useState({
     title: "",
     content: "",
-    thumbnail: "",
-    author: userData?._id, // Replace with actual author ID in a real app
+    thumbnail: null, // Changed to null for file upload
+    author: userData?._id,
   });
-
+  
+  console.log(formData.thumbnail);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    if (e.target.name === "thumbnail") {
+      setFormData({ ...formData, thumbnail: e.target.files[0] }); // Handle file input
+    } else {
+      setFormData({ ...formData, [e.target.name]: e.target.value });
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setMessage("");
+
+    // Create formData to append file and other form data
+    const formDataToSend = new FormData();
+    formDataToSend.append("title", formData.title);
+    formDataToSend.append("content", formData.content);
+    formDataToSend.append("author", formData.author);
+    if (formData.thumbnail) {
+      formDataToSend.append("thumbnail", formData.thumbnail); // Append file if selected
+    }
+
     try {
       const response = await axios.post(
         "http://127.0.0.1:5000/posts/create",
-        formData
+        formDataToSend,
+        { headers: { "Content-Type": "multipart/form-data" } }
       );
       setMessage(response.data.message);
       setFormData({
         title: "",
         content: "",
-        thumbnail: "",
+        thumbnail: null, // Reset after submission
         author: userData?._id,
       });
     } catch (error) {
+    console.log("error_________________________________", error);
+      
       setMessage(error.response?.data?.message || "An error occurred");
     }
     setLoading(false);
@@ -51,7 +64,11 @@ const CreatePost = () => {
         <h2 className="text-2xl font-bold text-center text-gray-800">
           Create Post
         </h2>
-        <form onSubmit={handleSubmit} className="mt-4 space-y-4">
+        <form
+          onSubmit={handleSubmit}
+          className="mt-4 space-y-4"
+          enctype="multipart/form-data"
+        >
           <div>
             <label className="block text-sm font-medium text-gray-700">
               Title
@@ -80,12 +97,11 @@ const CreatePost = () => {
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">
-              Thumbnail URL
+              Thumbnail Image
             </label>
             <input
-              type="text"
+              type="file"
               name="thumbnail"
-              value={formData.thumbnail}
               onChange={handleChange}
               required
               className="w-full mt-1 p-2 border rounded-md"
