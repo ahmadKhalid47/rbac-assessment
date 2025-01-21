@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { set_id, setEmail, setName, setRole } from "store/slices/userSlice";
 import Navbar from "./Common/Navbar";
 import { verifyTokenService } from "services/auth/verifyTokenService";
+import Loader from "./Common/Loader";
 
 const ProtectedRoute = ({ component: Component, ...rest }) => {
   const  {_id}  = useParams();
@@ -36,7 +37,11 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
   }, [dispatch, userData?.role]);
 
   if (isAuthorized === null) {
-    return <div>Loading...</div>;
+    return (
+      <div className="w-[100vw] h-[100vh]">
+        <Loader />
+      </div>
+    );
   }
 
   return isAuthorized ? (

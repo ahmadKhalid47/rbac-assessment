@@ -33,7 +33,7 @@ const AdminDashboard = () => {
       {!showUsers ? (
         <CreateRole role="User" />
       ) : (
-        <UserGrid userId={userData?._id} isSuperAdmin={false} />
+        <UserGrid userId={userData?._id} onlyAdmins={false} />
       )}
     </div>
   );

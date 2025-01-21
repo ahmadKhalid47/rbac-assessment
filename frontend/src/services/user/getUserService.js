@@ -4,7 +4,7 @@ export const getUserService = async ({
   currentPage,
   search,
   userId,
-  isSuperAdmin,
+  onlyAdmins,
 }) => {
   try {
     const response = await api.get(`/api/user/getUsers`, {
@@ -13,7 +13,7 @@ export const getUserService = async ({
         page: currentPage,
         search,
         userId,
-        isSuperAdmin,
+        onlyAdmins,
       },
     });
     return response.data; // Return response data directly

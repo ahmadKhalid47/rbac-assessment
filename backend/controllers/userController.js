@@ -75,12 +75,12 @@ const createUser = async (req, res) => {
 };
 
 const getUsers = async (req, res) => {
-  const { page = 1, search = "", isSuperAdmin } = req.query;
+  const { page = 1, search = "", onlyAdmins } = req.query;
   const limit = 6;
   const skip = (page - 1) * limit;
 
   try {
-    if (JSON.parse(isSuperAdmin)) {
+    if (JSON.parse(onlyAdmins)) {
       var query = search
         ? { name: { $regex: search, $options: "i" } }
         : { role: "Admin" };

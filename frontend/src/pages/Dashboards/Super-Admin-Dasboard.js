@@ -51,13 +51,13 @@ const SuperAdminDashboard = () => {
       </div>
 
       {showUsers === "allUsers" ? (
-        <UserGrid userId={userData?._id} isSuperAdmin={false} />
+        <UserGrid userId={userData?._id} onlyAdmins={false} />
       ) : showUsers === "createUser" ? (
         <CreateRole role="User" />
       ) : showUsers === "createAdmin" ? (
         <CreateRole role="Admin" />
       ) : showUsers === "allAdmins" ? (
-        <UserGrid userId={userData?._id} isSuperAdmin={true} />
+        <UserGrid userId={userData?._id} onlyAdmins={true} />
       ) : null}
     </div>
   );
