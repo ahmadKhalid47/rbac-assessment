@@ -34,7 +34,7 @@ function App() {
             path="/super-admin-dashboard"
             element={
               <ProtectedRoute
-                role="superadmin"
+                role="superAdmin"
                 component={SuperAdminDashboard}
               />
             }

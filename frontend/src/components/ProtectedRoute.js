@@ -1,28 +1,43 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import { jwtDecode } from "jwt-decode";
+import axios from "axios";
 
 const ProtectedRoute = ({ component: Component, role, ...rest }) => {
-  const token = "token";
-  console.log(token);
+  const [isAuthorized, setIsAuthorized] = useState(null);
 
-  if (!token) {
-    return <Navigate to="/login" />;
+  useEffect(() => {
+    const verifyToken = async () => {
+      try {
+        const response = await axios.get("http://127.0.0.1:5000/verify-token", {
+          withCredentials: true, // Ensure the HTTP-only cookies are sent
+        });
+console.log(response);
+
+        if (response.status === 200) {
+          const data = response.data;
+          if (!role || data.role === role) {
+            setIsAuthorized(true);
+          } else {
+            setIsAuthorized(false);
+          }
+        } else {
+          setIsAuthorized(false);
+        }
+      } catch (error) {
+        console.error("Error verifying token:", error);
+        setIsAuthorized(false);
+      }
+    };
+
+    verifyToken();
+  }, [role]);
+
+  if (isAuthorized === null) {
+    // Optional: Add a loading spinner while verifying the token
+    return <div>Loading...</div>;
   }
 
-  try {
-    const decoded = jwtDecode(token);
-    const userRole = decoded.role; // Extract user role from the JWT token
-
-    if (role && userRole === role) {
-      // Redirect to a default dashboard if role doesn't match
-      return <Component />;
-    } else {
-      return <Navigate to="/Login" />;
-    }
-  } catch (err) {
-    return <Navigate to="/login" />;
-  }
+  return isAuthorized ? <Component {...rest} /> : <Navigate to="/login" />;
 };
 
 export default ProtectedRoute;

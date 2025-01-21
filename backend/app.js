@@ -11,7 +11,7 @@ const connectDB = require("./config/db");
 // const authRoutes = require("./routes/auth.routes");
 const userRoutes = require("./routes/user.routes");
 const postRoutes = require("./routes/post.routes");
-const userModel = require("./models/user.model")
+const userModel = require("./models/user.model");
 
 dotenv.config();
 connectDB();
@@ -40,21 +40,16 @@ app.get("/api/auth/token", (req, res) => {
 
 app.post("/api/login", async (req, res) => {
   const { email, password } = req.body;
-console.log(email);
 
   try {
     // Find user in the database
-    const user2 = await userModel.find();
-console.log(user2);
 
-      let user = await userModel.findOne({ email: email });
-console.log(user);
-      
+    let user = await userModel.findOne({ email: email });
+
     if (!user) {
       return res.status(401).json({ message: "Invalid user" });
     }
 
-      
     // Compare password
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
@@ -77,6 +72,30 @@ console.log(user);
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+// Express example
+
+app.get("/verify-token", async (req, res) => {
+  const token = req.cookies.token; // Assuming the cookie is named "token"
+  console.log("token_____", token);
+
+  if (!token) {
+    return res.status(401).json({ message: "Unauthorized" });
+  }
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET); // Verify the token
+
+    let user = await userModel.findOne({ email: decoded.email });
+
+    console.log("decoded_____", user);
+
+    res.status(200).json({ role: user.role }); // Return the user's role or other data
+  } catch (error) {
+    console.error("Token verification failed:", error);
+    res.status(401).json({ message: "Invalid token" });
   }
 });
 
