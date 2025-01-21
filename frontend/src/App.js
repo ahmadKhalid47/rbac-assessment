@@ -1,26 +1,28 @@
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import HomePage from "./pages/index";
+import LoginPage from "./pages/Login";
+import RegisterPage from "./pages/register";
+import DashboardPage from "./pages/Dashboard";
+import PostsPage from "./pages/posts";
 import "./App.css";
-import { useEffect } from "react";
-import api from "./utils/api"
-import ImageUploader from "./components/ImageUploader";
 
-function App() {
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await api.get("/api/users");
-        console.log(response);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-    fetchData();
-  }, []);
-
+const App = () => {
   return (
-    <div className="App">
-      <ImageUploader />
-    </div>
+    <Router>
+      <Navbar /> 
+      <div className="container">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/posts" element={<PostsPage />} />
+        </Routes>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;

@@ -1,12 +1,13 @@
-// src/redux/store.js
-
 import { configureStore } from "@reduxjs/toolkit";
-import userReducer from "./userSlice";
+import authReducer from "./slices/authSlice";
+import userReducer from "./slices/userSlice";
+import postReducer from "./slices/postSlice";
 
-// Create the store and add the user slice reducer
 const store = configureStore({
   reducer: {
-    user: userReducer,
+    auth: authReducer,
+    users: userReducer,
+    posts: postReducer,
   },
 });
 
