@@ -159,6 +159,16 @@ app.post("/posts/create", uploadImage, async (req, res) => {
   }
 });
 
+app.post("/api/logout", (req, res) => {
+  res.clearCookie("token", {
+    httpOnly: true,
+    secure: true, // Use true in production with HTTPS
+    sameSite: "strict",
+  });
+  res.status(200).json({ message: "Logged out successfully" });
+});
+
+
 app.get("/api/posts", getPosts);
 
 module.exports = app;

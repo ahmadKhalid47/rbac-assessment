@@ -14,7 +14,6 @@ function App() {
       <Router>
         <Routes>
           <Route path="/login" element={<Login />} />
-
           {/* Protected Route for /dashboard, where the role determines which dashboard to show */}
           <Route
             path="/dashboard"

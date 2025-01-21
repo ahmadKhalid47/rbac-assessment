@@ -1,31 +1,19 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../store/slices/authSlice";
+import { useSelector } from "react-redux";
+import LogoutButton from "./Logout";
 
 const Navbar = () => {
-  const dispatch = useDispatch();
-  const { isAuthenticated } = useSelector((state) => state.auth);
-
-  const handleLogout = () => {
-    dispatch(logout());
-  };
+  const userData = useSelector((state) => state.users);
+  console.log(userData);
 
   return (
-    <nav>
-      <Link to="/">Home</Link>
-      {isAuthenticated ? (
-        <>
-          <Link to="/dashboard">Dashboard</Link>
-          <Link to="/posts">Posts</Link>
-          <button onClick={handleLogout}>Logout</button>
-        </>
-      ) : (
-        <>
-          <Link to="/login">Login</Link>
-          <Link to="/register">Register</Link>
-        </>
-      )}
+    <nav class="bg-gray-800 p-4">
+      <div class="max-w-7xl mx-auto flex items-center justify-between">
+        <div class="text-white text-lg font-semibold">
+          {userData?.name}- {userData?.role}
+        </div>
+        <LogoutButton />
+      </div>
     </nav>
   );
 };

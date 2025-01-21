@@ -3,6 +3,7 @@ import { Navigate } from "react-router-dom";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { set_id, setEmail, setName, setRole } from "store/slices/userSlice";
+import Navbar from "./Navbar";
 
 const ProtectedRoute = ({ component: Component, ...rest }) => {
   const [isAuthorized, setIsAuthorized] = useState(null);
@@ -46,7 +47,10 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
   }
 
   return isAuthorized ? (
-    <Component role={userData?.role} {...rest} />
+    <>
+<Navbar/>
+      <Component role={userData?.role} {...rest} />
+    </>
   ) : (
     <Navigate to="/login" />
   );
