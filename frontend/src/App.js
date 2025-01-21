@@ -1,28 +1,48 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import HomePage from "./pages/index";
-import LoginPage from "./pages/Login";
-import RegisterPage from "./pages/register";
-import DashboardPage from "./pages/Dashboard";
-import PostsPage from "./pages/posts";
-import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
-const App = () => {
+// Import Components
+// import Home from "./pages/Home";
+import Login from "./pages/Login";
+// import Register from "./pages/Register";
+import UserDashboard from "./pages/User-Dasboard";
+import AdminDashboard from "./pages/Admin-Dasboard";
+import SuperAdminDashboard from "./pages/Super-Admin-Dasboard";
+import ProtectedRoute from "./components/ProtectedRoute";
+
+function App() {
   return (
-    <Router>
-      <Navbar /> 
-      <div className="container">
+    <Provider store={store}>
+      <Router>
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/dashboard" element={<DashboardPage />} />
-          <Route path="/posts" element={<PostsPage />} />
+          {/* <Route path="/" element={<Home />} /> */}
+          <Route path="/login" element={<Login />} />
+          {/* <Route path="/register" element={<Register />} /> */}
+
+          {/* Protected Routes for User, Admin, Super Admin */}
+          <Route
+            path="/user-dashboard"
+            element={<ProtectedRoute role="user" component={UserDashboard} />}
+          />
+          <Route
+            path="/admin-dashboard"
+            element={<ProtectedRoute role="admin" component={AdminDashboard} />}
+          />
+          <Route
+            path="/super-admin-dashboard"
+            element={
+              <ProtectedRoute
+                role="superadmin"
+                component={SuperAdminDashboard}
+              />
+            }
+          />
         </Routes>
-      </div>
-    </Router>
+      </Router>
+    </Provider>
   );
-};
+}
 
 export default App;
