@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import { createPostService } from "services/post/createPostService";
 import api from "utils/api";
 
 const CreatePost = () => {
@@ -36,10 +37,7 @@ const CreatePost = () => {
     }
 
     try {
-      const response = await api.post("/api/post/createPost", formDataToSend, {
-        withCredentials: true,
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      const response = await createPostService(formData);
       setMessage(response.data.message);
       setFormData({
         title: "",
