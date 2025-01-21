@@ -35,7 +35,7 @@ const CreateRole = ({ role }) => {
 
   return (
     <div className="w-full mx-auto p-6 bg-white shadow-md rounded-lg my-5">
-      <h1 className="text-2xl font-bold text-gray-800 mb-4 text-center">
+      <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-800 mb-4 text-center">
         Create {role}
       </h1>
       <form onSubmit={handleSubmit} className="space-y-4">

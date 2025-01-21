@@ -5,7 +5,7 @@ const UserPosts = ({ _id }) => {
 
   return (
     <div className="p-6">
-      <h1 className="text-3xl font-bold mb-1">User Dashboard</h1>
+      <h1 className="text-xl sm:text-2xl md:text-3xl font-bold mb-1">User Dashboard</h1>
       <PostGrid userId={_id} isAdmin={false} />
     </div>
   );
