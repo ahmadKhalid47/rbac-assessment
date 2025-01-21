@@ -43,8 +43,8 @@ mongoose
   .catch((err) => console.error("MongoDB connection error:", err));
 
 // Define your routes here
-app.use("/api/users", require("./routes/userRoutes")); 
-app.use("/api/posts", require("./routes/postRoutes"));
+app.use("/api/users", require("./routes/user.routes")); 
+app.use("/api/posts", require("./routes/post.routes"));
 app.use("/api/images", require("./routes/uploadRoutes"));
 
 // Handle undefined routes 
