@@ -4,10 +4,9 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
-const uploadImage = require("./middlewares/CloudinaryUpload");
-const { getPosts, createPosts } = require("./controllers/postController");
 const userRoutes = require("./routes/user.routes");
 const authRoutes = require("./routes/auth.routes");
+const postRoutes = require("./routes/post.routes");
 const cors = require("cors");
 
 dotenv.config();
@@ -28,9 +27,6 @@ app.use(express.json());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
-
-// routes related posts
-app.post("/api/createPost", uploadImage, createPosts);
-app.get("/api/posts", getPosts);
+app.use("/api/post", postRoutes);
 
 module.exports = app;
