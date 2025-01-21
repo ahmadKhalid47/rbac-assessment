@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { set_id, setEmail, setName, setRole } from "store/slices/userSlice";
 
 const ProtectedRoute = ({ component: Component, ...rest }) => {
   const [isAuthorized, setIsAuthorized] = useState(null);
-  const [role, setRole] = useState("");
+  const dispatch = useDispatch();
+  const userData = useSelector((state) => state.users);
 
   useEffect(() => {
     const verifyToken = async () => {
@@ -16,6 +19,10 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
         if (response.status === 200) {
           const data = response.data;
           if (data.role) {
+            dispatch(setRole(data.role));
+            dispatch(setName(data.name));
+            dispatch(setEmail(data.email));
+            dispatch(set_id(data._id));
             setRole(data.role);
             setIsAuthorized(true);
           } else {
@@ -31,7 +38,7 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
     };
 
     verifyToken();
-  }, [role]);
+  }, [dispatch, userData?.role]);
 
   if (isAuthorized === null) {
     // Optional: Add a loading spinner while verifying the token
@@ -39,7 +46,7 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
   }
 
   return isAuthorized ? (
-    <Component role={role} {...rest} />
+    <Component role={userData?.role} {...rest} />
   ) : (
     <Navigate to="/login" />
   );

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { createPost } from "../services/post.service";
 import { useDispatch } from "react-redux";
-import { setPosts } from "../redux/slices/postSlice";
+import { setPosts } from "../store/slices/postSlice";
 
 const PostForm = () => {
   const [title, setTitle] = useState("");

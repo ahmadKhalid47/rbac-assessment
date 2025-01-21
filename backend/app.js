@@ -12,6 +12,7 @@ const connectDB = require("./config/db");
 const userRoutes = require("./routes/user.routes");
 const postRoutes = require("./routes/post.routes");
 const userModel = require("./models/user.model");
+const postModel = require("./models/post.model");
 
 dotenv.config();
 connectDB();
@@ -88,19 +89,18 @@ app.get("/verify-token", async (req, res) => {
     const decoded = jwt.verify(token, process.env.JWT_SECRET); // Verify the token
 
     let user = await userModel.findOne({ email: decoded.email });
+console.log(user);
 
-
-    res.status(200).json({ role: user.role }); // Return the user's role or other data
+    res.status(200).json(user); // Return the user's role or other data
   } catch (error) {
     console.error("Token verification failed:", error);
     res.status(401).json({ message: "Invalid token" });
   }
 });
 
-
 app.post("/api/users", async (req, res) => {
   const { name, email, password, role } = req.body;
-// console.log(req?.body);
+  // console.log(req?.body);
 
   // Validate required fields
   if (!name || !email || !password || !role) {
@@ -132,12 +132,32 @@ app.post("/api/users", async (req, res) => {
       .status(201)
       .json({ message: "User created successfully", user: newUser });
   } catch (error) {
-      console.log(error);
-      
+    console.log(error);
+
     return res.status(500).json({ message: "Error creating user", error });
   }
 });
 
+app.post("/posts/create", async (req, res) => {
+  console.log("hit");
 
+  try {
+    const { title, content, thumbnail, author } = req.body;
+
+    if (!title || !content || !thumbnail || !author) {
+      return res.status(400).json({ message: "All fields are required" });
+    }
+
+    const newPost = new postModel({ title, content, thumbnail, author });
+    await newPost.save();
+
+    res
+      .status(201)
+      .json({ message: "Post created successfully", post: newPost });
+  } catch (error) {
+    // console.log(error);
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+});
 
 module.exports = app;
