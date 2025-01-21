@@ -8,9 +8,10 @@ const SuperAdminDashboard = () => {
       <p>
         Welcome Super Admin! You have the highest level of access to the system.
       </p>
-
-      <CreateUserForm />
-      
+      <h2>Create Admin</h2>
+      <CreateUserForm role={"Admin"} />
+      <h2>Create User</h2>
+      <CreateUserForm role={"User"} />
     </div>
   );
 };

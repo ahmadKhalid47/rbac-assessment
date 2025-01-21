@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   const [email, setemail] = useState("superAdmin@gmail.com");
   const [password, setPassword] = useState("password");
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -18,6 +20,7 @@ const LoginPage = () => {
       console.error(error.response?.data || "Error occurred");
       console.log(error.response?.data?.message || "Login failed");
     }
+    navigate("/dashboard");
   };
 
   return (

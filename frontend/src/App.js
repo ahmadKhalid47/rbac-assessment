@@ -4,12 +4,8 @@ import { Provider } from "react-redux";
 import store from "./redux/store";
 
 // Import Components
-// import Home from "./pages/Home";
 import Login from "./pages/Login";
-// import Register from "./pages/Register";
-import UserDashboard from "./pages/User-Dasboard";
-import AdminDashboard from "./pages/Admin-Dasboard";
-import SuperAdminDashboard from "./pages/Super-Admin-Dasboard";
+import Dashboard from "./pages/Dashboard/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
@@ -17,27 +13,12 @@ function App() {
     <Provider store={store}>
       <Router>
         <Routes>
-          {/* <Route path="/" element={<Home />} /> */}
           <Route path="/login" element={<Login />} />
-          {/* <Route path="/register" element={<Register />} /> */}
 
-          {/* Protected Routes for User, Admin, Super Admin */}
+          {/* Protected Route for /dashboard, where the role determines which dashboard to show */}
           <Route
-            path="/user-dashboard"
-            element={<ProtectedRoute role="User" component={UserDashboard} />}
-          />
-          <Route
-            path="/admin-dashboard"
-            element={<ProtectedRoute role="Admin" component={AdminDashboard} />}
-          />
-          <Route
-            path="/super-admin-dashboard"
-            element={
-              <ProtectedRoute
-                role="superAdmin"
-                component={SuperAdminDashboard}
-              />
-            }
+            path="/dashboard"
+            element={<ProtectedRoute component={Dashboard} />}
           />
         </Routes>
       </Router>

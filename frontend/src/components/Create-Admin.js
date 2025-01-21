@@ -3,12 +3,12 @@
 import { useState } from "react";
 import axios from "axios";
 
-const CreateUserForm = () => {
+const CreateUserForm = ({role}) => {
   const [formData, setFormData] = useState({
     name: "admin",
     email: "admin@gmail.com",
     password: "admin",
-    role: "Admin",
+    role: role,
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
