@@ -35,6 +35,8 @@ const Registration = () => {
               onChange={(e) => setName(e.target.value)}
               className="w-full p-2 border border-gray-300 rounded"
               required
+              min={8}
+              max={30}
             />
           </div>
           <div>
@@ -45,6 +47,8 @@ const Registration = () => {
               onChange={(e) => setEmail(e.target.value)}
               className="w-full p-2 border border-gray-300 rounded"
               required
+              min={8}
+              max={30}
             />
           </div>
           <div>
@@ -55,6 +59,8 @@ const Registration = () => {
               onChange={(e) => setPassword(e.target.value)}
               className="w-full p-2 border border-gray-300 rounded"
               required
+              min={8}
+              max={30}
             />
           </div>
           <button

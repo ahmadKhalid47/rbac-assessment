@@ -74,6 +74,7 @@ const CreatePost = () => {
               onChange={handleChange}
               required
               className="w-full mt-1 p-2 border rounded-md"
+              min={6}
             />
           </div>
           <div>
@@ -87,6 +88,7 @@ const CreatePost = () => {
               required
               className="w-full mt-1 p-2 border rounded-md"
               rows="4"
+              min={6}
             />
           </div>
           <div>

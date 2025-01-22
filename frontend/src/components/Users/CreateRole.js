@@ -53,6 +53,8 @@ const CreateRole = ({ role }) => {
             value={formData.name}
             onChange={handleChange}
             required
+            min={8}
+            max={30}
             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
           />
         </div>
@@ -70,6 +72,8 @@ const CreateRole = ({ role }) => {
             value={formData.email}
             onChange={handleChange}
             required
+            min={8}
+            max={30}
             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
           />
         </div>
@@ -87,6 +91,8 @@ const CreateRole = ({ role }) => {
             value={formData.password}
             onChange={handleChange}
             required
+            min={8}
+            max={30}
             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
           />
         </div>
