@@ -4,7 +4,7 @@ export const getUserService = async ({
   currentPage,
   search,
   userId,
-  onlyAdmins,
+  viewAdmins,
 }) => {
   try {
     const response = await api.get(`/api/user/getUsers`, {
@@ -13,11 +13,11 @@ export const getUserService = async ({
         page: currentPage,
         search,
         userId,
-        onlyAdmins,
+        viewAdmins,
       },
     });
-    return response.data; // Return response data directly
+    return response.data;
   } catch (error) {
-    throw error; // Throw the error to be handled by the component
+    throw error; 
   }
 };

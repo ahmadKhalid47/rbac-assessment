@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store/store";
 
-// Import Components
 import Login from "./pages/Auth/Login";
 import Dashboard from "./pages/Dashboards/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -20,7 +19,7 @@ function App() {
             path="/SuperAdminRegistration/:token"
             element={<SuperAdminRoute />}
           />
-          {/* Protected Route for /dashboard, where the role determines which dashboard to show */}
+          {/* Protected Routes */}
           <Route
             path="/dashboard"
             element={<ProtectedRoute component={Dashboard} />}

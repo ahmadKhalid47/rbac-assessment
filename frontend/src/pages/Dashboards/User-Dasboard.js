@@ -13,7 +13,9 @@ const UserDashboard = () => {
 
   return (
     <div className="p-6">
-      <h1 className="text-xl sm:text-2xl md:text-3xl font-bold mb-1">User Dashboard</h1>
+      <h1 className="text-xl sm:text-2xl md:text-3xl font-bold mb-1">
+        User Dashboard
+      </h1>
       <p className="text-gray-700">
         Welcome User! Here you can manage your posts.
       </p>
@@ -32,6 +34,7 @@ const UserDashboard = () => {
           Create Post
         </button>
       </div>
+      {/* as isAdmin=false it will show only post created by current user   */}
       {!showPosts ? (
         <CreatePost />
       ) : (

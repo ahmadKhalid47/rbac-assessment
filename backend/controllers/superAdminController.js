@@ -3,13 +3,13 @@ const jwt = require("jsonwebtoken");
 const userModel = require("../models/user.model");
 
 const verifyToken = async (req, res) => {
-  const { token } = req.body;
-  console.log("token_________________________", token);
+  
+  // verifying token attached with super admin registration page
 
+  const { token } = req.body;
   if (!token) {
     return res.status(401).json({ message: "Unauthorized" });
   }
-
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     let user = await userModel.findOne({ email: decoded.email });
@@ -19,6 +19,8 @@ const verifyToken = async (req, res) => {
   }
 };
 
+
+// register superadmin after verifying token  
 const registerSuperAdmin = async (req, res) => {
   const { name, email, password } = req.body;
   if (!name || !email || !password) {
@@ -26,6 +28,7 @@ const registerSuperAdmin = async (req, res) => {
   }
 
   const existingUser = await userModel.findOne({ role: "SuperAdmin" });
+  
   if (existingUser) {
     return res.status(400).json({ message: "SuperAdmin already exists" });
   }

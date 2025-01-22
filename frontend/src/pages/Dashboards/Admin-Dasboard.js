@@ -12,7 +12,9 @@ const AdminDashboard = () => {
 
   return (
     <div className="p-6">
-      <h1 className="text-xl sm:text-2xl md:text-3xl font-bold mb-1">Admin Dashboard</h1>
+      <h1 className="text-xl sm:text-2xl md:text-3xl font-bold mb-1">
+        Admin Dashboard
+      </h1>
       <p className="text-gray-700">Welcome Admin! Here you can manage users.</p>
 
       <div className="w-full h-fit flex my-6 text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold py-2 justify-between ">
@@ -30,10 +32,11 @@ const AdminDashboard = () => {
         </button>
       </div>
 
+{/* here Admin Can create user and view users */}
       {!showUsers ? (
         <CreateRole role="User" />
       ) : (
-        <UserGrid userId={userData?._id} onlyAdmins={false} />
+        <UserGrid userId={userData?._id} viewAdmins={false} />
       )}
     </div>
   );

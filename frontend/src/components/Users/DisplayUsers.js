@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getUserService } from "services/user/getUserService";
 
-const UserGrid = ({ userId, onlyAdmins }) => {
+const UserGrid = ({ userId, viewAdmins }) => {
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -14,7 +14,7 @@ const UserGrid = ({ userId, onlyAdmins }) => {
         currentPage,
         search,
         userId,
-        onlyAdmins,
+        viewAdmins,
       });
       console.log(data);
 
@@ -27,7 +27,7 @@ const UserGrid = ({ userId, onlyAdmins }) => {
 
   useEffect(() => {
     fetchUsers();
-  }, [currentPage, search, userId, onlyAdmins]);
+  }, [currentPage, search, userId, viewAdmins]);
 
   const handleSearchChange = (e) => {
     setSearch(e.target.value);

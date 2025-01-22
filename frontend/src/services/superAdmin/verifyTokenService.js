@@ -9,11 +9,11 @@ export const verifyTokenService = async ({ token }) => {
     });
 
     if (response.status === 200) {
-      return response.data; // Return the response data if the token is valid
+      return response.data; 
     } else {
       throw new Error("Unauthorized");
     }
   } catch (error) {
-    throw error; // Throw the error to be handled by the component
+    throw error; 
   }
 };

@@ -6,7 +6,6 @@ const {
 
 const router = express.Router();
 
-// Generate token
 router.post("/verify-token", verifyToken);
 router.post("/registerSuperAdmin", registerSuperAdmin);
 

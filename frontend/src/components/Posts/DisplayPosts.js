@@ -7,6 +7,7 @@ const PostGrid = ({ userId, isAdmin }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPosts, setTotalPosts] = useState(0);
 
+  
   const fetchPosts = async () => {
     try {
       const data = await getPostService({

@@ -18,7 +18,6 @@ const SuperAdminDashboard = () => {
       </h1>
       <p className="text-gray-700">Welcome Admin! Here you can manage users.</p>
 
-      {/* Responsive Tab Buttons */}
       <div className="flex flex-wrap gap-1 justify-between md:gap-0 my-6 text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">
         <button
           className={`w-full sm:w-[48%] md:w-[24.5%] p-3 text-center rounded-xl md:rounded-xl ${activeTab === "allUsers" ? "bg-blue-500 text-white" : "bg-gray-100"}`}
@@ -46,14 +45,16 @@ const SuperAdminDashboard = () => {
         </button>
       </div>
 
-      {/* Conditional Rendering based on Active Tab */}
+      {/* here viewAdmins=false is will passed to api to view users */}
       {activeTab === "allUsers" && (
-        <UserGrid userId={userData?._id} onlyAdmins={false} />
+        <UserGrid userId={userData?._id} viewAdmins={false} />
       )}
       {activeTab === "createUser" && <CreateRole role="User" />}
       {activeTab === "createAdmin" && <CreateRole role="Admin" />}
+
+      {/* here viewAdmins=true is will passed to api to view admin */}
       {activeTab === "allAdmins" && (
-        <UserGrid userId={userData?._id} onlyAdmins={true} />
+        <UserGrid userId={userData?._id} viewAdmins={true} />
       )}
     </div>
   );

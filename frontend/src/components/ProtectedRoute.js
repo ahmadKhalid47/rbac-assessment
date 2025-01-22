@@ -7,13 +7,12 @@ import { verifyTokenService } from "services/auth/verifyTokenService";
 import Loader from "./Ui/Loader";
 
 const ProtectedRoute = ({ component: Component, ...rest }) => {
-  const  {_id}  = useParams();
-  console.log(_id);
-
+  const { _id } = useParams();
   const [isAuthorized, setIsAuthorized] = useState(null);
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.users);
 
+  // verifying and decoding token
   const verifyToken = async () => {
     try {
       const data = await verifyTokenService();
@@ -36,6 +35,7 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
     verifyToken();
   }, [dispatch, userData?.role]);
 
+  // Loading
   if (isAuthorized === null) {
     return (
       <div className="w-[100vw] h-[100vh]">

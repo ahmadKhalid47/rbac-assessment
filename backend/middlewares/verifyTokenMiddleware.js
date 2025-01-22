@@ -1,6 +1,8 @@
 const jwt = require("jsonwebtoken");
 const userModel = require("../models/user.model");
 
+// verify token middleware to verify every api  
+
 const verifyTokenMiddleware = async (req, res, next) => {
   const token = req.cookies.token;
     if (!token) {      

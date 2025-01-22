@@ -2,6 +2,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const userModel = require("../models/user.model");
 
+// Login 
 const login = async (req, res) => {
   const { email, password } = req.body;
 
@@ -34,6 +35,7 @@ const login = async (req, res) => {
   }
 };
 
+// Logout 
 const logout = (req, res) => {
   res.clearCookie("token", {
     httpOnly: true,
@@ -43,6 +45,7 @@ const logout = (req, res) => {
   res.status(200).json({ message: "Logged out successfully" });
 };
 
+// creating users, admins 
 const createUser = async (req, res) => {
   const { name, email, password, role } = req.body;
   if (!name || !email || !password || !role) {
@@ -56,7 +59,7 @@ const createUser = async (req, res) => {
       .json({ message: "User with this email already exists" });
   }
   const hashedPassword = await bcrypt.hash(password, 10);
-
+// role will contain "User" "Admin"
   try {
     const newUser = new userModel({
       name,
@@ -74,13 +77,16 @@ const createUser = async (req, res) => {
   }
 };
 
+// getting users including searching and pagination
 const getUsers = async (req, res) => {
-  const { page = 1, search = "", onlyAdmins } = req.query;
+  const { page = 1, search = "", viewAdmins } = req.query;
   const limit = 6;
   const skip = (page - 1) * limit;
 
   try {
-    if (JSON.parse(onlyAdmins)) {
+
+    // condition to find both admins (for superadmin) and users 
+    if (JSON.parse(viewAdmins)) {
       var query = search
         ? { name: { $regex: search, $options: "i" } }
         : { role: "Admin" };
