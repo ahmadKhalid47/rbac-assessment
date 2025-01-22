@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { set_id, setEmail, setName, setRole } from "store/slices/userSlice";
 import Navbar from "./Common/Navbar";
 import { verifyTokenService } from "services/auth/verifyTokenService";
-import Loader from "./Common/Loader";
+import Loader from "./Ui/Loader";
 
 const ProtectedRoute = ({ component: Component, ...rest }) => {
   const  {_id}  = useParams();

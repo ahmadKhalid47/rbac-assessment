@@ -7,7 +7,6 @@ const UserGrid = ({ userId, onlyAdmins }) => {
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [totalUsers, setTotalUsers] = useState(0);
-  console.log(onlyAdmins);
 
   const fetchUsers = async () => {
     try {
