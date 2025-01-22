@@ -8,6 +8,7 @@ import Login from "./pages/Auth/Login";
 import Dashboard from "./pages/Dashboards/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
 import UserPosts from "pages/UserPosts";
+import SuperAdminRoute from "components/SuperAdmin/SuperAdminRoute";
 
 function App() {
   return (
@@ -15,6 +16,10 @@ function App() {
       <Router>
         <Routes>
           <Route path="/login" element={<Login />} />
+          <Route
+            path="/SuperAdminRegistration/:token"
+            element={<SuperAdminRoute />}
+          />
           {/* Protected Route for /dashboard, where the role determines which dashboard to show */}
           <Route
             path="/dashboard"

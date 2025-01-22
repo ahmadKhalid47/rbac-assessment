@@ -7,6 +7,7 @@ const connectDB = require("./config/db");
 const userRoutes = require("./routes/user.routes");
 const authRoutes = require("./routes/auth.routes");
 const postRoutes = require("./routes/post.routes");
+const superAdminRoutes = require("./routes/superAdmin.routes");
 const cors = require("cors");
 
 dotenv.config();
@@ -28,5 +29,6 @@ app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/post", postRoutes);
+app.use("/api/superAdmin", superAdminRoutes);
 
 module.exports = app;
