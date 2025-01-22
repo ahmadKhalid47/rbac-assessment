@@ -40,6 +40,9 @@ This project is built using the MERN stack (MongoDB, Express.js, React, Node.js)
 - Mongoose for MongoDB integration
 - #### Database:
 - MongoDB (Stores users and posts data)
+- #### Api Documentation:
+To test and explore the API, you can use the Postman documentation:
+- Open https://documenter.getpostman.com/view/30078005/2sAYQdi9pg in your browser to access the Postman.
 
 ## Setup
 - ### Prerequisites
