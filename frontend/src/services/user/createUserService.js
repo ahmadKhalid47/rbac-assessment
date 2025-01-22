@@ -5,6 +5,7 @@ export const createUserService = async (formData) => {
     const response = await api.post("/api/user/createUser", formData, {
       withCredentials: true,
     });
+      alert("User Created");
     return response;
   } catch (err) {
     throw err;

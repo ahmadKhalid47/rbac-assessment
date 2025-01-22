@@ -1,8 +1,6 @@
 import api from "utils/api";
 
 export const verifyTokenService = async ({ token }) => {
-  console.log("token______________---___", token);
-
   try {
     const response = await api.post("/api/superAdmin/verify-token", {
       token: token,

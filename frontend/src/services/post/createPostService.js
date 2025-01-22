@@ -6,6 +6,7 @@ export const createPostService = async (formDataToSend) => {
       withCredentials: true,
       headers: { "Content-Type": "multipart/form-data" },
     });
+    alert("Post Created");
     return response.data;
   } catch (error) {
     throw error;

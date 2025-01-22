@@ -17,6 +17,7 @@ const Registration = () => {
       });
       setMessage(response.data.message);
       window.location.href = "/login";
+      alert("Super Admin Registered");
     } catch (error) {
       setMessage(error.response?.data?.message || "Registration failed.");
     }
