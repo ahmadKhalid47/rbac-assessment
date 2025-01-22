@@ -1,11 +1,13 @@
 import api from "utils/api";
 
-export const verifyTokenService = async ({ token }) => {
-  console.log("token______________---___", token);
+export const verifyTokenService = async ({ name, email, password }) => {
+  console.log("name____--------___", { name, email, password });
 
   try {
     const response = await api.post("/api/superAdmin/verify-token", {
-      token: token,
+      name,
+      email,
+      password,
     });
 
     if (response.status === 200) {
